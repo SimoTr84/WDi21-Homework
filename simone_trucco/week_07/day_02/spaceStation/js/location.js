@@ -2,42 +2,46 @@ var ISS_URL = "http://api.open-notify.org/iss-now.json";
 var ISS_METHOD = "GET";
 var ISS_DATA_TYPE = "JSONP";
 
-var displayPosition = function (data) {
+var initMap = function(lat, lon) {
 
-  var lat = data.iss_position.latitude;
-  var lon = data.iss_position.longitude;
-
-  $(".latitude").text( lat );
-  $(".longitude").text( lon );
-
-  // var lat = data.iss_position.latitude;
-  // var lon = data.iss_position.longitude;
-  // var currentPosition = lat + lon;
-  // var $newPosition = $("<p></p>");
-  // $newPosition.text(currentPosition);
-  // $newposition.appendTo( ".position" );
+  var spaceStation = {
+    lat: lat,
+    lng: lon
+  };
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: spaceStation
+  });
+  var marker = new google.maps.Marker({
+    position: iss,
+    map: map
+  });
 };
 
-var issPosition = function (){
-    $.ajax ({
-      url: ISS_URL,
-      method: ISS_METHOD,
-      dataType: ISS_DATA_TYPE
+var displayPosition = function(data) {
+
+  var lat = parseFloat(data.iss_position.latitude);
+  var lon = parseFloat(data.iss_position.longitude);
+
+  $(".latitude").text(lat);
+  $(".longitude").text(lon);
+
+  initMap(lat, lon);
+};
+
+var issPosition = function() {
+  $.ajax({
+    url: ISS_URL,
+    method: ISS_METHOD,
+    dataType: ISS_DATA_TYPE
   }).done(displayPosition);
 };
-issPosition();
 
-$(document).ready(function () {
+$(document).ready(function() {
   issPosition();
 
-  var ISS_POSITION = window.setInterval(function () {
+  window.setInterval(function() {
     issPosition();
   }, 3000);
 
-
-  // HOW DO I APPEND ONE LOCATION AFTER ANOTHER?!?!?!?!
-
-  // $(".stop button").on("click", function () {
-  //   window.clearInterval( CHUCK_TIMER );
-  // });
 });

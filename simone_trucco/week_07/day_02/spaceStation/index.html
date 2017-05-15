@@ -5,18 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Space Station</title>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxfMhKvkE7SWk1ybs74lVNmNZwRAoinx4&callback=initMap">
+  </script>
   <script src="js/jquery.js"></script>
   <script src="js/main.js"></script>
 </head>
 <body>
 
-  <h1>space station</h1>
+  <h1>International Space Station</h1>
 
+
+<!-- num + name sof people in space -->
+  <h2>People In Space</h2>
+  <h2></h2>
   <div class="content">
-
     <ul>
     </ul>
   </div>
 
+
+<!-- lat and long show -->
+  <h2>ISS Current Position</h2>
+
+  <div class="position">
+    <p>
+      Latitude: <span class="latitude"></span>
+      <br>
+      Longitude: <span class="longitude"></span>
+    </p>
+  </div>
+
+
+  <!-- Google Map -->
+    <div id="map"></div>
+
+  
 </body>
 </html>

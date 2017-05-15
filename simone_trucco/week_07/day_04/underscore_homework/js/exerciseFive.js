@@ -21,7 +21,7 @@ var people = [
 
 // Create a function that can only ever be called once
   var gameStart  = _.once( function () {
-    console.log("Game Starteeeeedddd!!!");
+    console.log("Loading... Please Wait...");
   });
   gameStart();
   gameStart();
